@@ -1,0 +1,235 @@
+openapi: 3.0.0
+info:
+  title:  API Documentation
+  description: API documentation for 
+  version: 1.0 
+  
+servers:
+  # - url: localhost:3000/
+    description:  Local server 
+ 
+components:
+  securitySchemes:
+    ApiTokenss:        # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+  schemas:
+    Item:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Grp1
+      required:
+        - name
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Rashid 
+        email:
+          type: string
+          example: rashid@gmail.com
+        password:
+          type: string
+          example: 123456
+      required:
+        - name
+        - email
+        - password
+    Login:
+      type: object
+      properties:
+        email:
+          type: string
+          example: rashid@gmail.com
+        password:
+          type: string
+          example: 123456
+      required:
+        - email
+        - password
+paths:
+  /item:
+    post:
+      tags:
+        - Item Detail
+      security:
+       - ApiTokenss: []
+      summary: Return created Item.       
+      post:
+      requestBody:
+        description: Optional description in *Markdown*
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Item' 
+      responses:
+        '200':
+          description: A item object. 
+        '400':
+          description: The specified item ID is invalid (not a number).
+        '404':
+          description: A item with the specified ID was not found.
+        default:
+          description: Unexpected error
+  /item/{itemId}:
+    get:
+      tags:
+        -  Item Detail
+      summary: Returns a item details by ID.
+      security:
+       - ApiTokenss: []
+      parameters:
+        - name: itemId
+          in: path
+          required: true
+          description: item id is present in the path.
+          schema:
+            type: string
+      responses: 
+        '200':
+          description: OK
+    put:
+      tags:
+        -  Item Detail 
+      summary: Returns a item details by ID.
+      security:
+       - ApiTokenss: []
+      parameters:
+        - name: itemId
+          in: path
+          required: true
+          description: item id is present in the path.
+          schema:
+            type: string
+      requestBody:
+        description: Optional description in *Markdown*
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Item' 
+      responses: 
+        '200':
+          description: OK
+    delete:
+      tags:
+        -  Item Detail 
+      summary: Returns a item details by ID.
+      security:
+       - ApiTokenss: []
+      parameters:
+        - name: itemId
+          in: path
+          required: true
+          description: item id is present in the path.
+          schema:
+            type: string
+      responses: 
+        '200':
+          description: OK
+  paths:
+  /signup:
+    post:
+      tags:
+        - User Detail
+      summary: Return created user with token.       
+      post:
+      requestBody:
+        description: Optional description in *Markdown*
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User' 
+      responses:
+        '200':
+          description: A user object. 
+        '400':
+          description: The specified user ID is invalid (not a number).
+        '404':
+          description: A user with the specified ID was not found.
+        default:
+          description: Unexpected error
+  /login:
+    post:
+      tags:
+        - User Detail
+      summary: Return created user with token.       
+      post:
+      requestBody:
+        description: Optional description in *Markdown*
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login' 
+      responses:
+        '200':
+          description: A user object. 
+        '400':
+          description: The specified user ID is invalid (not a number).
+        '404':
+          description: A user with the specified ID was not found.
+        default:
+          description: Unexpected error
+  /user/{userId}:
+    get:
+      tags:
+        -  User Detail
+      summary: Returns a user details by Id.
+      security:
+       - ApiTokenss: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: user id is present in the path.
+          schema:
+            type: string
+      responses: 
+        '200':
+          description: OK
+    put:
+      tags:
+        -  User Detail
+      summary: Returns a user details by id.
+      security:
+       - ApiTokenss: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: user id is present in the path.
+          schema:
+            type: string
+      requestBody:
+      description: Optional description in *Markdown*
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/User' 
+      responses: 
+        '200':
+          description: OK
+    delete:
+      tags:
+        -  User Detail
+      summary: Returns a user details by id.
+      security:
+       - ApiTokenss: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: user id is present in the path.
+          schema:
+            type: string
+      responses: 
+        '200':
+          description: OK
+  
