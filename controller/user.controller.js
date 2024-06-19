@@ -74,7 +74,6 @@ const login = async(req,res) => {
 
     // 2) Check if user exists and password is correct
     const user = await userService.findByProperty(email,'+password');
-    console.log(user)
     if (!user || !(await userService.correctPassword(password, user.password))) {
         return next(new AppError('Incorrect email or password', 401));
     }

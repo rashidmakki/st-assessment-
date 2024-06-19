@@ -75,6 +75,27 @@ paths:
           description: A item with the specified ID was not found.
         default:
           description: Unexpected error
+    get:
+      tags:
+        - Item Details
+      security:
+      - ApiTokenss: []
+      summary: Return all created Item.       
+      post:
+      requestBody:
+        description: Optional description in *Markdown*
+        required: false
+        content:
+          application/json:
+      responses:
+        '200':
+          description: A item object. 
+        '400':
+          description: The specified item ID is invalid (not a number).
+        '404':
+          description: A item with the specified ID was not found.
+        default:
+          description: Unexpected error
   /item/{itemId}:
     get:
       tags:

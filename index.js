@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+var cors = require('cors')
 const sequelize = require('./config/database');
 const { swaggerServe, swaggerSetup } = require("./config/swagger.config");
 const dotenv = require('dotenv').config();
@@ -15,7 +16,9 @@ console.error('Unable to connect to the database:', err);
 });
 sequelize.sync();
 
+
 // Middleware
+app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
