@@ -77,7 +77,7 @@ paths:
           description: Unexpected error
     get:
       tags:
-        - Item Details
+        - Item Detail
       security:
       - ApiTokenss: []
       summary: Return all created Item.       

@@ -30,10 +30,8 @@ Assessment on Food Delivery using NodeJS, Express, Sequelize , MYSQL, NextJS , B
 
             npm install
 
-            npm install -g concurrently
-
             cd client && npm install
             
 - To start application:
 
-            npm run dev
+            npm start
